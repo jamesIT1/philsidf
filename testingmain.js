@@ -2,11 +2,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const dropdowns = document.querySelectorAll('.nav-menu .dropdown');
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+
+            // When closing the main menu, also close any open dropdowns
+            if (!navMenu.classList.contains('active')) {
+                dropdowns.forEach(d => d.classList.remove('active'));
+            }
+        });
+    }
+
+    // Dropdown logic for mobile
+    if (hamburger && dropdowns.length > 0) {
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            link.addEventListener('click', (event) => {
+                const isMobileView = getComputedStyle(hamburger).display !== 'none';
+                if (isMobileView) {
+                    event.preventDefault();
+                    
+                    // If the clicked dropdown is not active, close others first.
+                    if (!dropdown.classList.contains('active')) {
+                        dropdowns.forEach(d => d.classList.remove('active'));
+                    }
+                    
+                    // Then toggle the clicked one.
+                    dropdown.classList.toggle('active');
+                }
+            });
         });
     }
 
