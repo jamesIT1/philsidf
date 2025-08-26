@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addToInquiryBtn.addEventListener('click', () => {
                 const title = document.getElementById('modalTitle').textContent;
                 const imageSrc = document.getElementById('modalImage').src;
-                const inquiryUrl = `inquiry-form/alibaba.html?productName=${encodeURIComponent(title)}&productImage=${encodeURIComponent(imageSrc)}`;
+                const inquiryUrl = `alibaba.html?productName=${encodeURIComponent(title)}&productImage=${encodeURIComponent(imageSrc)}`;
                 window.location.href = inquiryUrl;
             });
         }
@@ -202,4 +202,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 });
